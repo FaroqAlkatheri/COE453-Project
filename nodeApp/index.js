@@ -1,12 +1,23 @@
 const express = require('express');
 const { MongoClient } = require('mongodb');
-
+const cors = require('cors');
 const app = express();
 const uri = 'mongodb+srv://abdulrahmansu10:x1oIn3AtyHyaCfVz@cluster0.oi9efuz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const databaseName = 'security_incidents';
 const collectionName = 'incidents';
+
+
+const corsOptions = {
+  origin: '*', // Allow requests from any origin
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed HTTP methods
+  allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
+};
+
+// Enable CORS for all routes
+app.use(cors(corsOptions));
+
 
 async function connectToDatabase() {
   try {
