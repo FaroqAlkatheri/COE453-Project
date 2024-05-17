@@ -1,0 +1,16 @@
+{
+  "name": "my-app",
+  "version": "1.0.0",
+  "description": "A Node.js application using Express and MongoDB",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongodb": "^3.6.9"
+  },
+  "engines": {
+    "node": "14.x"
+  }
+}
