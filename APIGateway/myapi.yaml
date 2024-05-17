@@ -1,0 +1,51 @@
+swagger: "2.0"
+info:
+  title: mySampleAPI
+  description: API Walk through.
+  version: 1.0.0
+host: projectapi.apigateway.coe453-project-423513.cloud.goog
+basePath: /
+schemes:
+  - https
+paths:
+  /devices/{deviceId}/incidents:
+    get:
+      operationId: getCloudFunction
+      summary: Get incidents by device ID using Cloud Function.
+      parameters:
+        - name: deviceId
+          in: path
+          required: true
+          type: string
+          description: ID of the device
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+      x-google-backend:
+        address: https://us-central1-coe453-project-423513.cloudfunctions.net/function-1
+        path_translation: APPEND_PATH_TO_ADDRESS
+  /devices/{deviceId}/incidents/{incidentType}:
+    get:
+      operationId: getCloudRun
+      summary: Get incidents by device ID and incident type using Cloud Run.
+      parameters:
+        - name: deviceId
+          in: path
+          required: true
+          type: string
+          description: ID of the device
+        - name: incidentType
+          in: path
+          required: true
+          type: string
+          description: Type of the incident
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+      x-google-backend:
+        address: https://nodeapp-vwf7h3mqfa-uc.a.run.app
+        path_translation: APPEND_PATH_TO_ADDRESS
